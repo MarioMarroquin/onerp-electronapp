@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./main.css" />
+    <title>ONERP</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="mb-5">ONERP MAIN DASH</h1>
+    </header>
+
+    <div id="container">
+      <main>
+        Node.js <span id="node-version"></span> - Chromium
+        <span id="chrome-version"></span> - Electron
+        <span id="electron-version"></span>.
+      </main>
+    </div>
+
+    <div class="custom-control custom-radio" id="list_printers"></div>
+
+    <br />
+    <input onclick="print()" type="button" value="printer test" />
+    <br />
+    <br />
+    <br />
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

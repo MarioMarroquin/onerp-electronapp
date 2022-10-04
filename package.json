@@ -2,12 +2,15 @@
   "name": "onerp-electronapp",
   "version": "1.0.0",
   "description": "Hardware",
-  "main": "index.js",
+  "main": "src/main.js",
   "repository": "https://github.com/MarioMarroquin/onerp-electronapp.git",
   "author": "Mario Marroquin <A00825266@tec.mx>",
   "license": "MIT",
+  "dependencies": {
+    "electron-pos-printer": "^1.2.0"
+  },
   "devDependencies": {
-    "electron": "^21.0.1"
+    "electron": "^9.1.0"
   },
   "scripts": {
     "start": "electron ."
