@@ -1,0 +1,15 @@
+{
+  "name": "onerp-electronapp",
+  "version": "1.0.0",
+  "description": "Hardware",
+  "main": "index.js",
+  "repository": "https://github.com/MarioMarroquin/onerp-electronapp.git",
+  "author": "Mario Marroquin <A00825266@tec.mx>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^21.0.1"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
