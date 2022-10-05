@@ -7,7 +7,10 @@
   "author": "Mario Marroquin <A00825266@tec.mx>",
   "license": "MIT",
   "dependencies": {
-    "electron-pos-printer": "^1.2.0"
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "electron-pos-printer": "^1.2.0",
+    "express": "^4.18.1"
   },
   "devDependencies": {
     "electron": "^9.1.0"

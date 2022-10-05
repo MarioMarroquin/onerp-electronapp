@@ -24,16 +24,151 @@ printers.map((item, index) => {
     "</label><br>";
 });
 
-const ticket = {
+/* const tickest = {
+  id: "123456789",
   folio: "asd123",
   products: [
-    [1, "Pizza Salami", 110],
-    [3, "Pizza Light", 79],
-    [2, "Pizza Hawaiana", 99],
+    { product: { name: "Pizza Salami" }, price: 119, quantity: 1 },
+    { product: { name: "Pizza Light" }, price: 99, quantity: 2 },
+    { product: { name: "Pizza Hawaiana" }, price: 109, quantity: 3 },
   ],
-};
+  subtotal: 359,
+  store: {
+    name: "Suc. La Purisima",
+    franchise: { name: "La Purisima" },
+    address: {
+      street: "Hacienda Pino 2019, Fracc. Los Angeles",
+      zipcode: 66577,
+      city: "Monterrey",
+      state: "Nuevo Leon",
+    },
+  },
+  cliente: {
+    firstName: "Mario",
+    lastName: "Marroquin",
+  },
+  saleType: {
+    name: "Local",
+  },
+  payments: {
+    method: "CASH",
+  },
+  tips: 10,
+  taxes: 16,
+}; */
 
-const data = [
+function checkTicket(ticket) {
+  let products = [];
+  let productsList = ticket.products.map(({ __typename, ...item }) => item);
+  productsList = productsList.map(Object.values);
+
+  productsList.forEach((p) => {
+    let aux = [];
+    aux.push(p[0]);
+    aux.push(p[1].name);
+
+    aux.push(p[2]);
+    aux.push(p[0] * p[2]);
+    products.push(aux);
+  });
+
+  const data = [
+    /*  {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: ticket.store.franchise.name,
+      style: `text-align:center;`,
+      css: { "font-size": "24px" },
+    }, */
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: `Ticket #${ticket.folio}`,
+      style: `text-align:center;`,
+      css: { "font-size": "20px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Referencia #______ <br><br>",
+      style: `text-align:center;`,
+      css: { "font-size": "16px" },
+    },
+    /* {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: `${ticket.store.address.street}, ${ticket.store.address.city}, ${ticket.store.address.state}, C.P. ${ticket.store.address.zipcode}`,
+      style: `text-align:center;`,
+      css: { "font-size": "12px" },
+    }, */
+    {
+      type: "text",
+      value: "" + date(),
+      style: `text-align:center;`,
+      css: { "font-size": "12px", "font-family": "sans-serif" },
+    },
+
+    {
+      type: "table",
+      // style the table
+      style: "border: 1px solid #ddd",
+      // list of the columns to be rendered in the table header
+      tableHeader: ["#", "Nombre", "$", "Total"],
+      // multi dimensional array depicting the rows and columns of the table body
+      tableBody: products,
+      // list of columns to be rendered in the table footer
+      //tableFooter: ["Animal", "Age"],
+      // custom style for the table header
+      //tableHeaderStyle: "background-color: #000; color: white;",
+      // custom style for the table body
+      tableBodyStyle: "border: 0.5px solid #ddd",
+      // custom style for the table footer
+      //tableFooterStyle: "background-color: #000; color: white;",
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Total a pagar: $ 100",
+      style: `text-align:right;`,
+      css: { "font-size": "16px", "font-family": "Arial" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Devolucion: $ 50",
+      style: `text-align:right;`,
+      css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Descuento: $ 10",
+      style: `text-align:right;`,
+      css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Abonos: $ 5",
+      style: `text-align:right;`,
+      css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "IVA: $ 16",
+      style: `text-align:right;`,
+      css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Propina: $ 3 <br><br><hr><br>",
+      style: `text-align:right;`,
+      css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Gracias",
+      style: `text-align:center;`,
+      css: { "font-size": "16px" },
+    },
+  ];
+
+  print(data);
+}
+
+const dataa = [
   {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
     value: "Tortas La Purisima",
@@ -110,7 +245,7 @@ const data = [
     // list of the columns to be rendered in the table header
     tableHeader: ["#", "Nombre", "$", "Total"],
     // multi dimensional array depicting the rows and columns of the table body
-    tableBody: ticket.products,
+    //tableBody: ticket.products,
     // list of columns to be rendered in the table footer
     //tableFooter: ["Animal", "Age"],
     // custom style for the table header
@@ -203,7 +338,7 @@ function date() {
   );
 }
 
-function print() {
+function print(data) {
   let printerName;
   let widthPage;
 
@@ -241,3 +376,27 @@ function print() {
     alert("Select the printer and the width");
   }
 }
+const express = require("express");
+
+var bodyParser = require("body-parser");
+var cors = require("cors");
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+// create application/json parser
+var jsonParser = bodyParser.json();
+
+let app = express();
+app.use(cors(corsOptions));
+
+let server = app.listen(5632);
+
+app.post("/ticket", jsonParser, async (req, res) => {
+  console.log(req.body.data.createTicket);
+  checkTicket(req.body.data.createTicket);
+  res.send("OK");
+});
