@@ -73,12 +73,12 @@ function checkTicket(ticket) {
   });
 
   const data = [
-    /*  {
+    {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: ticket.store.franchise.name,
       style: `text-align:center;`,
       css: { "font-size": "24px" },
-    }, */
+    },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: `Ticket #${ticket.folio}`,
@@ -91,15 +91,15 @@ function checkTicket(ticket) {
       style: `text-align:center;`,
       css: { "font-size": "16px" },
     },
-    /* {
+    {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: `${ticket.store.address.street}, ${ticket.store.address.city}, ${ticket.store.address.state}, C.P. ${ticket.store.address.zipcode}`,
       style: `text-align:center;`,
       css: { "font-size": "12px" },
-    }, */
+    },
     {
       type: "text",
-      value: "" + date(),
+      value: `Tipo de venta: ${ticket.saleType.name} <br><br>`,
       style: `text-align:center;`,
       css: { "font-size": "12px", "font-family": "sans-serif" },
     },
@@ -107,53 +107,53 @@ function checkTicket(ticket) {
     {
       type: "table",
       // style the table
-      style: "border: 1px solid #ddd",
+      style: "margin-left: 7px",
       // list of the columns to be rendered in the table header
-      tableHeader: ["#", "Nombre", "$", "Total"],
+      tableHeader: [" #", "Nombre", "$", "Subtotal"],
       // multi dimensional array depicting the rows and columns of the table body
       tableBody: products,
       // list of columns to be rendered in the table footer
-      //tableFooter: ["Animal", "Age"],
+      tableFooter: [""],
       // custom style for the table header
-      //tableHeaderStyle: "background-color: #000; color: white;",
+      tableHeaderStyle: "border-top: 1px solid #000;",
       // custom style for the table body
       tableBodyStyle: "border: 0.5px solid #ddd",
       // custom style for the table footer
-      //tableFooterStyle: "background-color: #000; color: white;",
+      tableFooterStyle: "border-bottom: 1px solid #000; color: white;",
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Total a pagar: $ 100",
+      value: `<br><br>Total a pagar: ${ticket.subtotal}`,
       style: `text-align:right;`,
       css: { "font-size": "16px", "font-family": "Arial" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Devolucion: $ 50",
+      value: "Devolucion: $ 0.00",
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Descuento: $ 10",
+      value: "Descuento: $ 0.00",
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Abonos: $ 5",
+      value: "Abonos: $ 0.00",
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "IVA: $ 16",
+      value: `IVA: $ ${ticket.taxes}`,
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Propina: $ 3 <br><br><hr><br>",
+      value: `Propina: $ ${ticket.tips} <br><br><hr><br>`,
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
@@ -162,6 +162,31 @@ function checkTicket(ticket) {
       value: "Gracias",
       style: `text-align:center;`,
       css: { "font-size": "16px" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Cliente:",
+      style: `text-align:left;`,
+      css: { "font-size": "16px", "font-weight": "600" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: `${ticket.client.firstName} ${ticket.client.lastName}`,
+      style: `text-align:left;`,
+      css: { "font-size": "16px" },
+    },
+
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: "Atendio:",
+      style: `text-align:left;`,
+      css: { "font-size": "16px", "font-weight": "600" },
+    },
+    {
+      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+      value: `${ticket.store.name}`,
+      style: `text-align:left;`,
+      css: { "font-size": "16px", "font-weight": "600" },
     },
   ];
 
