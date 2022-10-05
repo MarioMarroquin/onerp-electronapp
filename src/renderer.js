@@ -24,14 +24,48 @@ printers.map((item, index) => {
     "</label><br>";
 });
 
+const ticket = {
+  folio: "asd123",
+  products: [
+    [1, "Pizza Salami", 110],
+    [3, "Pizza Light", 79],
+    [2, "Pizza Hawaiana", 99],
+  ],
+};
+
 const data = [
   {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "||---",
-    style: `text-align:left;`,
+    value: "Tortas La Purisima",
+    style: `text-align:center;`,
+    css: { "font-size": "24px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Ticket #______",
+    style: `text-align:center;`,
+    css: { "font-size": "20px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Referencia #______ <br><br>",
+    style: `text-align:center;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value:
+      "Hacienda Pino # 2019, Fracc. Los Angeles, 66477, Monterrey, Nuevo Leon",
+    style: `text-align:center;`,
     css: { "font-size": "12px" },
   },
   {
+    type: "text",
+    value: "" + date(),
+    style: `text-align:center;`,
+    css: { "font-size": "12px", "font-family": "sans-serif" },
+  },
+  /*  {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
     value: "HEADER",
     style: `text-align:center;`,
@@ -68,6 +102,65 @@ const data = [
     value: "---||",
     style: `text-align:right;`,
     css: { "font-size": "12px" },
+  }, */
+  {
+    type: "table",
+    // style the table
+    style: "border: 1px solid #ddd",
+    // list of the columns to be rendered in the table header
+    tableHeader: ["#", "Nombre", "$", "Total"],
+    // multi dimensional array depicting the rows and columns of the table body
+    tableBody: ticket.products,
+    // list of columns to be rendered in the table footer
+    //tableFooter: ["Animal", "Age"],
+    // custom style for the table header
+    //tableHeaderStyle: "background-color: #000; color: white;",
+    // custom style for the table body
+    tableBodyStyle: "border: 0.5px solid #ddd",
+    // custom style for the table footer
+    //tableFooterStyle: "background-color: #000; color: white;",
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Total a pagar: $ 100",
+    style: `text-align:right;`,
+    css: { "font-size": "16px", "font-family": "Arial" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Devolucion: $ 50",
+    style: `text-align:right;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Descuento: $ 10",
+    style: `text-align:right;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Abonos: $ 5",
+    style: `text-align:right;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "IVA: $ 16",
+    style: `text-align:right;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Propina: $ 3 <br><br><hr><br>",
+    style: `text-align:right;`,
+    css: { "font-size": "16px" },
+  },
+  {
+    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+    value: "Gracias",
+    style: `text-align:center;`,
+    css: { "font-size": "16px" },
   },
 ];
 
@@ -81,18 +174,18 @@ function date() {
   const ano = x.getFullYear().toString().substr(-2);
   const ms = x.getMonth();
   const meses = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
 
   return (
@@ -104,7 +197,9 @@ function date() {
     " -  " +
     h.substr(-2) +
     "/" +
-    meses[ms]
+    meses[ms] +
+    "/" +
+    ano
   );
 }
 
@@ -134,14 +229,7 @@ function print() {
     silent: true,
   };
 
-  const now = {
-    type: "text",
-    value: "" + date(),
-    style: `text-align:center;`,
-    css: { "font-size": "12px", "font-family": "sans-serif" },
-  };
-
-  const d = [...data, now];
+  const d = [...data];
 
   if (printerName) {
     PosPrinter.print(d, options)
