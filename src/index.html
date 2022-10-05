@@ -19,21 +19,32 @@
       <h1 class="mb-5">ONERP MAIN DASH</h1>
     </header>
 
-    <div id="container">
-      <main>
-        Node.js <span id="node-version"></span> - Chromium
-        <span id="chrome-version"></span> - Electron
-        <span id="electron-version"></span>.
-      </main>
+    <div>
+      <form name>
+        <p>Impresoras disponibles:</p>
+
+        <div id="list_printers"></div>
+
+        <br />
+
+        <p>Anchura del rollo de papel</p>
+        <input type="radio" id="w1" name="width" value="140px" />
+        <label for="w1">140px (37mm)</label><br />
+
+        <input type="radio" id="w2" name="width" value="170px" />
+        <label for="w2">170p (45mm)</label><br />
+
+        <input type="radio" id="w3" name="width" value="200px" />
+        <label for="w3">200px (58mm)</label><br />
+
+        <input type="radio" id="w4" name="width" value="250px" />
+        <label for="w4">250px (67mm)</label><br />
+
+        <input type="radio" id="w5" name="width" value="300px" />
+        <label for="w5">300px (80mm)</label><br />
+      </form>
     </div>
 
-    <div class="custom-control custom-radio" id="list_printers"></div>
-
-    <br />
-    <input onclick="print()" type="button" value="printer test" />
-    <br />
-    <br />
-    <br />
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
   </body>

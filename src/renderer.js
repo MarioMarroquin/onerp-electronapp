@@ -77,29 +77,35 @@ function checkTicket(ticket) {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: ticket.store.franchise.name,
       style: `text-align:center;`,
-      css: { "font-size": "24px" },
+      css: { "font-size": "24px", "font-family": "sans-serif" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: `Ticket #${ticket.folio}`,
+      value: `${ticket.store.name}`,
       style: `text-align:center;`,
-      css: { "font-size": "20px" },
+      css: { "font-size": "20px", "font-family": "sans-serif" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Referencia #______ <br><br>",
+      value: `Ticket ${ticket.folio}`,
       style: `text-align:center;`,
-      css: { "font-size": "16px" },
+      css: { "font-size": "20px", "font-family": "sans-serif" },
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: `${ticket.store.address.street}, ${ticket.store.address.city}, ${ticket.store.address.state}, C.P. ${ticket.store.address.zipcode}`,
       style: `text-align:center;`,
-      css: { "font-size": "12px" },
+      css: { "font-size": "12px", "font-family": "sans-serif" },
     },
     {
       type: "text",
       value: `Tipo de venta: ${ticket.saleType.name} <br><br>`,
+      style: `text-align:center;`,
+      css: { "font-size": "12px", "font-family": "sans-serif" },
+    },
+    {
+      type: "text",
+      value: "" + date(),
       style: `text-align:center;`,
       css: { "font-size": "12px", "font-family": "sans-serif" },
     },
@@ -117,7 +123,7 @@ function checkTicket(ticket) {
       // custom style for the table header
       tableHeaderStyle: "border-top: 1px solid #000;",
       // custom style for the table body
-      tableBodyStyle: "border: 0.5px solid #ddd",
+      tableBodyStyle: "font-weight: 600; ",
       // custom style for the table footer
       tableFooterStyle: "border-bottom: 1px solid #000; color: white;",
     },
@@ -129,19 +135,7 @@ function checkTicket(ticket) {
     },
     {
       type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Devolucion: $ 0.00",
-      style: `text-align:right;`,
-      css: { "font-size": "16px" },
-    },
-    {
-      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
       value: "Descuento: $ 0.00",
-      style: `text-align:right;`,
-      css: { "font-size": "16px" },
-    },
-    {
-      type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-      value: "Abonos: $ 0.00",
       style: `text-align:right;`,
       css: { "font-size": "16px" },
     },
@@ -193,137 +187,6 @@ function checkTicket(ticket) {
   print(data);
 }
 
-const dataa = [
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Tortas La Purisima",
-    style: `text-align:center;`,
-    css: { "font-size": "24px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Ticket #______",
-    style: `text-align:center;`,
-    css: { "font-size": "20px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Referencia #______ <br><br>",
-    style: `text-align:center;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value:
-      "Hacienda Pino # 2019, Fracc. Los Angeles, 66477, Monterrey, Nuevo Leon",
-    style: `text-align:center;`,
-    css: { "font-size": "12px" },
-  },
-  {
-    type: "text",
-    value: "" + date(),
-    style: `text-align:center;`,
-    css: { "font-size": "12px", "font-family": "sans-serif" },
-  },
-  /*  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "HEADER",
-    style: `text-align:center;`,
-    css: { "font-weight": "700", "font-size": "18px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table'
-    value:
-      "Lorem ipsum<br><br> . , ; : ( ) - + = ! # % \" ' <br><br> ã Ã ç Ç $ & @ ê Ê í Í<br><br> 0 1 2 3 4 5 6 7 8 9 <br>a b c d e f g h i j k l m n o p q r s t u v w x y z<br>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br><br><hr><br>elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \n ullamco \n laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum<br>",
-
-    css: {
-      "font-size": "12px",
-      "font-family": "sans-serif",
-      "text-align": "center",
-    },
-  },
-  {
-    type: "barCode", // Do you think the result is ugly? Me too. Try use an image instead...
-    value: "HB4587896",
-    height: 12,
-    width: 1,
-    displayValue: true, // Display value below barcode
-    fontsize: 8,
-  },
-  {
-    type: "qrCode",
-    value: "https://github.com/fssonca",
-    height: 80,
-    width: 80,
-    style: "margin-left:50px",
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "---||",
-    style: `text-align:right;`,
-    css: { "font-size": "12px" },
-  }, */
-  {
-    type: "table",
-    // style the table
-    style: "border: 1px solid #ddd",
-    // list of the columns to be rendered in the table header
-    tableHeader: ["#", "Nombre", "$", "Total"],
-    // multi dimensional array depicting the rows and columns of the table body
-    //tableBody: ticket.products,
-    // list of columns to be rendered in the table footer
-    //tableFooter: ["Animal", "Age"],
-    // custom style for the table header
-    //tableHeaderStyle: "background-color: #000; color: white;",
-    // custom style for the table body
-    tableBodyStyle: "border: 0.5px solid #ddd",
-    // custom style for the table footer
-    //tableFooterStyle: "background-color: #000; color: white;",
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Total a pagar: $ 100",
-    style: `text-align:right;`,
-    css: { "font-size": "16px", "font-family": "Arial" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Devolucion: $ 50",
-    style: `text-align:right;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Descuento: $ 10",
-    style: `text-align:right;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Abonos: $ 5",
-    style: `text-align:right;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "IVA: $ 16",
-    style: `text-align:right;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Propina: $ 3 <br><br><hr><br>",
-    style: `text-align:right;`,
-    css: { "font-size": "16px" },
-  },
-  {
-    type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "Gracias",
-    style: `text-align:center;`,
-    css: { "font-size": "16px" },
-  },
-];
-
 function date() {
   const x = new Date();
 
@@ -368,6 +231,7 @@ function print(data) {
   let widthPage;
 
   var p = document.getElementsByName("printer");
+  var w = document.getElementsByName("width");
 
   for (var i = 0, length = p.length; i < length; i++) {
     if (p[i].checked) {
@@ -376,12 +240,19 @@ function print(data) {
       break;
     }
   }
+  for (var i = 0, length = w.length; i < length; i++) {
+    if (w[i].checked) {
+      widthPage = w[i].value;
 
-  console.log(printerName);
+      break;
+    }
+  }
+
+  console.log(printerName, widthPage);
 
   const options = {
     preview: false, // Preview in window or print
-    width: "300px", //  width of content body
+    width: widthPage, //  width of content body
     margin: "0 0 0 0", // margin of content body
     copies: 1, // Number of copies to print
     printerName: printerName, // printerName: string, check it at webContent.getPrinters()
@@ -391,7 +262,7 @@ function print(data) {
 
   const d = [...data];
 
-  if (printerName) {
+  if (printerName && widthPage) {
     PosPrinter.print(d, options)
       .then(() => {})
       .catch((error) => {
@@ -407,7 +278,7 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://www.onerp.com.mx",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

@@ -5,8 +5,8 @@ const path = require("path");
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 700,
+    width: 450,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, "./preload.js"),
       nodeIntegration: true, // ATENÇÃO AQUI - attention here - that's why your node_module works or not
