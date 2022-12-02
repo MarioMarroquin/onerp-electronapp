@@ -35,7 +35,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.post("/ticket", jsonParser, async (req, res) => {
-  //console.log(req.body.data.createTicket);
-  createTicket(req.body.data.createTicket);
+  console.log(req.body.data.createTicket);
+  //createTicket(req.body.data.createTicket);
   res.send("OK");
 });

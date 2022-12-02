@@ -5,11 +5,25 @@ const { orderProducts } = require("./ticket/order.js");
 const createTicket = (ticket) => {
   let productsList = orderProducts(ticket.products);
 
+  const messageTicket = document.getElementById("message").value;
+
+  let clientName = "";
+
+  if (ticket.client === null) {
+    clientName = "Sin Cliente";
+  } else {
+    clientName = `${ticket.client?.firstName} ${ticket.client?.lastName}`;
+  }
+
   const firstTitle = {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
     value: ticket.store.franchise.name,
     style: `text-align:center;`,
-    css: { "font-size": "24px", "font-family": "sans-serif" },
+    css: {
+      "font-size": "24px",
+      "font-family": "sans-serif",
+      "font-weight": "600",
+    },
   };
 
   const secondTitle = {
@@ -56,13 +70,13 @@ const createTicket = (ticket) => {
     // multi dimensional array depicting the rows and columns of the table body
     tableBody: productsList,
     // list of columns to be rendered in the table footer
-    tableFooter: [""],
+    tableFooter: ["", "", "", ""],
     // custom style for the table header
     tableHeaderStyle: "border-top: 1px solid #000;",
     // custom style for the table body
     tableBodyStyle: "font-weight: 600; text-align: left;  padding-left: 0px;",
     // custom style for the table footer
-    tableFooterStyle: "border-bottom: 1px solid #000; color: white;",
+    tableFooterStyle: "border-top: 1px solid #000; ",
   };
 
   const discount = {
@@ -74,7 +88,7 @@ const createTicket = (ticket) => {
 
   const tip = {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: `<br><br> Propina: $ ${ticket.tips}`,
+    value: `<br> Propina: $ ${ticket.tips}`,
     style: `text-align:right;`,
     css: { "font-size": "16px" },
   };
@@ -88,21 +102,23 @@ const createTicket = (ticket) => {
 
   const total = {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: `Total a pagar: ${ticket.subtotal}<br><br>`,
+    value: `Total a pagar: $ ${
+      ticket.subtotal + ticket.taxes + ticket.tips
+    }<br><br>`,
     style: `text-align:right;`,
     css: { "font-size": "16px", "font-family": "Arial" },
   };
 
   const message = {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: "¡Gracias! <br><br>",
+    value: `${messageTicket} <br><br>`,
     style: `text-align:center;`,
     css: { "font-size": "16px" },
   };
 
   const client = {
     type: "text", // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-    value: `<b>Cliente</b>: ${ticket.client.firstName} ${ticket.client.lastName}`,
+    value: `<b>Cliente</b>: ${clientName}`,
     style: `text-align:left;`,
     css: { "font-size": "16px" },
   };
